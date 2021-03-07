@@ -14,8 +14,8 @@ Run it without any arguments to find out:
 
 ```
 $ unheic
-usage: unheic [--replace] FILES
-    Create a JPEG version of one or multiple HEIC files which can be located in
+usage: unheic [--replace] [file ...]
+    Create JPEG versions of one or multiple HEIC files which can be located in
     different directories: Each conversion result ends up 'next to' its
     respective original or replaces it if the --replace flag is set. Uses sips.
 ```
