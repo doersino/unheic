@@ -1,0 +1,25 @@
+#!/bin/bash
+
+USAGE="usage: unheic [--replace] FILES
+    Create a JPEG version of one or multiple HEIC files which can be located in
+    different directories: Each conversion result ends up 'next to' its
+    respective original or replaces it if the --replace flag is set. Uses sips."
+
+REPLACE=false
+if [ "$1" == "--replace" ]; then
+    REPLACE=true
+    shift
+fi
+
+if [ -z "$1" ]; then
+    echo -e "$USAGE"; exit 1
+fi
+
+for FILE in "$@"; do
+    NO_EXT="${FILE%.*}"
+    #echo "$NO_EXT"
+    sips -s format jpeg "$FILE" --out "$NO_EXT".jpg
+    if [ $REPLACE == true ]; then
+        rm "$FILE"
+    fi
+done
